@@ -1,0 +1,21 @@
+.logo {
+  width: 200px;
+  height: 20px;
+  
+}
+
+ nav .logo,
+ .blogHero .logo {
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center; 
+}
+
+
+nav .logo {
+  background-image: url(../assets/wealthsimpleLogoWhiteBackground.png);
+}
+
+.blogHero .logo {
+  background-image: url(../assets/wealthsimpleLogoGreyBackground.png);
+}
