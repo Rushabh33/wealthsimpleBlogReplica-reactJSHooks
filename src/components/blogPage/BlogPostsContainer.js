@@ -22,11 +22,9 @@ const BlogPostsContainer = () => {
     getHackerNewsAPI('topstories').then(data => setTopArticleIDs(data))
   }, [])
 
-
-  const getListofPosts = async () => {
-    const listOfPostsToDisplay = topArticleIDs.slice(lastDisplayedPostIndex, lastDisplayedPostIndex + postsPerPage)
-    return await Promise.all(listOfPostsToDisplay.map(id => getHackerNewsAPI(id, 'item')))
-  }
+  useEffect(() => {
+    addToListOfPostsToDisplay()
+  }, [topArticleIDs])
 
   const addToListOfPostsToDisplay = () => {
     if (listOfPosts.length < 501) {
@@ -38,19 +36,23 @@ const BlogPostsContainer = () => {
     }
   }
 
-  useEffect(() => {
-    addToListOfPostsToDisplay()
-  }, [topArticleIDs])
+  const getListofPosts = async () => {
+    const listOfPostsToDisplay = topArticleIDs.slice(lastDisplayedPostIndex, lastDisplayedPostIndex + postsPerPage)
+    return await Promise.all(listOfPostsToDisplay.map(id => getHackerNewsAPI(id, 'item')))
+  }
+
+
 
   const handleScrollLoading = () => {
     console.log('fetch')
+    addToListOfPostsToDisplay()
   }
 
   return (
     <>
       {listOfPosts.length
         ? <div>
-          <PostCategories listOfPosts={listOfPosts} handleScrollLoading={handleScrollLoading} />
+          <PostCategories listOfPosts={listOfPosts} handleScrollLoading={handleScrollLoading} postsPerPage={postsPerPage} />
         </div>
         : <div>loading</div>}
     </>
