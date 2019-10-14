@@ -10,6 +10,7 @@ const PostSubCategory = ({ postsToDisplay, handleScrollLoading, postsPerPage }) 
   const [loadMore, setLoadMore] = useState(false)
 
   const displayPosts = (data) => {
+
     return data.map(post => {
       return (
         <li className='post'>
