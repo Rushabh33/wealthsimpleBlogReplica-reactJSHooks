@@ -8,6 +8,7 @@ const BlogPostsContainer = () => {
   const [listOfPosts, setListOfPosts] = useState([])
   const [lastDisplayedPostIndex, setLastDisplayedPostIndex] = useState(0)
   const [postsPerPage, setPostsPerPage] = useState(30)
+  const [loading, setLoading] = useState(false)
 
   const getHackerNewsAPI = async (query, queryCategory = '') => {
     const url = `https://hacker-news.firebaseio.com/v0/${queryCategory + '/'}${query}.json`
@@ -29,9 +30,10 @@ const BlogPostsContainer = () => {
 
   const addToListOfPostsToDisplay = () => {
     if (listOfPosts.length < 501) {
-      getListofPosts().then(data => {
+      return getListofPosts().then(data => {
         setListOfPosts([...listOfPosts, ...data])
         setLastDisplayedPostIndex(lastDisplayedPostIndex + postsPerPage)
+        setLoading(false)
       })
     }
   }
@@ -40,12 +42,15 @@ const BlogPostsContainer = () => {
     addToListOfPostsToDisplay()
   }, [topArticleIDs])
 
+  const handleScrollLoading = () => {
+    console.log('fetch')
+  }
 
   return (
     <>
       {listOfPosts.length
         ? <div>
-          <PostCategories listOfPosts={listOfPosts} />
+          <PostCategories listOfPosts={listOfPosts} handleScrollLoading={handleScrollLoading} />
         </div>
         : <div>loading</div>}
     </>
