@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react'
+import PostCategories from './PostCategories'
+import FeaturedPost from './FeaturedPost'
 
 const BlogPostsContainer = () => {
 
   const [topArticleIDs, setTopArticleIDs] = useState([])
-  const [listOfArticles, setListOfArticles] = useState([])
-  const [firstDisplayedPostIndex, setfirstDisplayedPostIndex] = useState(0)
+  const [listOfPosts, setListOfPosts] = useState([])
+  const [lastDisplayedPostIndex, setLastDisplayedPostIndex] = useState(0)
   const [postsPerPage, setPostsPerPage] = useState(30)
 
   const getHackerNewsAPI = async (query, queryCategory = '') => {
@@ -20,29 +22,33 @@ const BlogPostsContainer = () => {
   }, [])
 
 
-  const getListofArticles = async () => {
-    const articlesToDisplay = topArticleIDs.slice(firstDisplayedPostIndex, firstDisplayedPostIndex + postsPerPage)
-    return await Promise.all(articlesToDisplay.map(id => getHackerNewsAPI(id, 'item')))
+  const getListofPosts = async () => {
+    const listOfPostsToDisplay = topArticleIDs.slice(lastDisplayedPostIndex, lastDisplayedPostIndex + postsPerPage)
+    return await Promise.all(listOfPostsToDisplay.map(id => getHackerNewsAPI(id, 'item')))
   }
 
-  const updateListOfArticlesToDisplay = () => {
-    getListofArticles().then(data => {
-      setListOfArticles(data)
-      setfirstDisplayedPostIndex(firstDisplayedPostIndex + postsPerPage)
-    })
+  const addToListOfPostsToDisplay = () => {
+    if (listOfPosts.length < 501) {
+      getListofPosts().then(data => {
+        setListOfPosts([...listOfPosts, ...data])
+        setLastDisplayedPostIndex(lastDisplayedPostIndex + postsPerPage)
+      })
+    }
   }
 
   useEffect(() => {
-    updateListOfArticlesToDisplay()
+    addToListOfPostsToDisplay()
   }, [topArticleIDs])
 
-  //sort out if i need to change firstDisplayedPostIndex to lastDisplayedPostIndex to accomadate for pagenation on scroll
-  // use updateListOfArticlesToDisplay() for pagenation
 
   return (
-    <div>
-
-    </div>
+    <>
+      {listOfPosts.length
+        ? <div>
+          <PostCategories listOfPosts={listOfPosts} />
+        </div>
+        : <div>loading</div>}
+    </>
   )
 }
 
