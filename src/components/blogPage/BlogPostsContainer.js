@@ -52,7 +52,7 @@ const BlogPostsContainer = () => {
     <>
       {listOfPosts.length
         ? <div>
-          <PostCategories listOfPosts={listOfPosts} handleScrollLoading={handleScrollLoading} postsPerPage={postsPerPage} />
+          <PostCategories listOfPosts={listOfPosts} handleScrollLoading={handleScrollLoading} postsPerPage={postsPerPage} setLoading={setLoading} />
         </div>
         : <div>loading</div>}
     </>

@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import FeaturedPost from './FeaturedPost'
 import PostSubCategory from './PostSubCategory'
 
-const PostCategories = ({ listOfPosts, handleScrollLoading, postsPerPage }) => {
+const PostCategories = ({ listOfPosts, handleScrollLoading, postsPerPage, setLoading }) => {
   // 21239704 has image and description. Good for featured.
   const [featuredPost, setFeaturedPost] = useState(21239704)
   const [categoryAPosts, setCategoryAPosts] = useState(listOfPosts.slice(0, 4))
@@ -12,7 +12,7 @@ const PostCategories = ({ listOfPosts, handleScrollLoading, postsPerPage }) => {
     <div>
       <FeaturedPost postsToDisplay={featuredPost} />
       {/* <PostSubCategory postsToDisplay={categoryAPosts} /> */}
-      <PostSubCategory postsToDisplay={listOfPosts} handleScrollLoading={handleScrollLoading} postsPerPage={postsPerPage} />
+      <PostSubCategory postsToDisplay={listOfPosts} handleScrollLoading={handleScrollLoading} postsPerPage={postsPerPage} setLoading={setLoading} />
     </div>
   )
 }
