@@ -1,6 +1,5 @@
 import React from 'react'
 import PostCard from './PostCard'
-import PostMetaInfo from './PostMetaInfo'
 
 const FeaturedPost = ({ featuredPostData }) => {
 
@@ -12,10 +11,3 @@ const FeaturedPost = ({ featuredPostData }) => {
 }
 
 export default FeaturedPost
-
-
-
-// <a href="">
-// <img src="" alt="" />
-// <PostMetaInfo postToDisplay={postToDisplay} />
-// </a>

@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
 
 const PostMetaInfo = ({ postInfo, postDescription }) => {
-  // console.log(postInfo['title'])
   return (
     <div className='postMetaInfoContainer'>
       <span className="postCategory">money diaries</span>

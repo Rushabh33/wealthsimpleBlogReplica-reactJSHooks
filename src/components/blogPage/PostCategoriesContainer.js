@@ -8,7 +8,6 @@ const PostCategoriesContainer = () => {
   const [listOfPosts, setListOfPosts] = useState([])
   const [lastDisplayedPostIndex, setLastDisplayedPostIndex] = useState(0)
   const [postsPerPage, setPostsPerPage] = useState(30)
-  const [loading, setLoading] = useState(false)
   const [featuredPostData, setFeaturedPostData] = useState({})
 
   const getHackerNewsAPI = async (query, queryCategory = '') => {
@@ -56,7 +55,7 @@ const PostCategoriesContainer = () => {
       {listOfPosts.length
         ? <div className='wrapper'>
           <FeaturedPost featuredPostData={featuredPostData} />
-          <PostCategories listOfPosts={listOfPosts} handleScrollLoading={handleScrollLoading} postsPerPage={postsPerPage} setLoading={setLoading} featuredPostData={featuredPostData} />
+          <PostCategories listOfPosts={listOfPosts} handleScrollLoading={handleScrollLoading} postsPerPage={postsPerPage} featuredPostData={featuredPostData} />
         </div>
         : <div>loading</div>}
     </div>

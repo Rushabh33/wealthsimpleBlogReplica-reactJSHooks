@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import PostCard from './PostCard'
 
-// right now doing the category with items to display
-const PostCategory = ({ postsToDisplay, handleScrollLoading, postsPerPage, setLoading }) => {
+const PostCategory = ({ postsToDisplay, handleScrollLoading, postsPerPage }) => {
   const isCategoryAPosts = postsToDisplay.length < postsPerPage
   const [thumbnailPosts, setThumbnailPosts] = useState(postsToDisplay.slice(0, 4))
   const [displayThesePosts, setDisplayThesePosts] = useState(postsToDisplay)
@@ -19,11 +18,6 @@ const PostCategory = ({ postsToDisplay, handleScrollLoading, postsPerPage, setLo
     })
   }
 
-  const handleClick = (e) => {
-    e.preventDefault()
-    setActivateScrollLoading(true)
-  }
-
   useEffect(() => {
     if (activateScrollLoading && !isCategoryAPosts) {
       window.addEventListener('scroll', handleScroll);
@@ -31,23 +25,27 @@ const PostCategory = ({ postsToDisplay, handleScrollLoading, postsPerPage, setLo
     }
   }, [activateScrollLoading]);
 
+  useEffect(() => {
+    if (!loadMore) return
+    handleScrollLoading()
+  }, [loadMore])
+
+  useEffect(() => {
+    setDisplayThesePosts(postsToDisplay)
+    setLoadMore(false)
+  }, [postsToDisplay])
+
+  const handleClick = (e) => {
+    e.preventDefault()
+    setActivateScrollLoading(true)
+  }
+
   const handleScroll = () => {
     const categoryBContainer = document.getElementById('categoryBContainer')
     if (window.innerHeight + window.scrollY >= categoryBContainer.clientHeight + categoryBContainer.offsetTop) {
       setLoadMore(true)
     }
   }
-
-  useEffect(() => {
-    if (!loadMore) return
-    handleScrollLoading()
-  }, [loadMore])
-
-
-  useEffect(() => {
-    setDisplayThesePosts(postsToDisplay)
-    setLoadMore(false)
-  }, [postsToDisplay])
 
   return (
     <div className='postCategory'>
