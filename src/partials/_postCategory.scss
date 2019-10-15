@@ -1,0 +1,20 @@
+.postList {
+  list-style-type: none;
+  // height: 1284px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+
+.loadingDiv {
+  height: 100vh;
+}
+
+.hidden {
+  display: none;
+}
+
+.postCategory {
+  margin-bottom: 100px;
+}

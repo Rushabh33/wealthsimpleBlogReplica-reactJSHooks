@@ -1,6 +1,6 @@
 import React from 'react'
 import BlogHero from './BlogHero'
-import BlogPostsContainer from './BlogPostsContainer'
+import PostCategoriesContainer from './PostCategoriesContainer'
 import Footer from './Footer'
 
 const BlogPage = () => {
@@ -8,8 +8,8 @@ const BlogPage = () => {
     <>
       <main>
         <BlogHero />
-        {/* Filter section here */}
-        <BlogPostsContainer />
+        {/* filter component here */}
+        <PostCategoriesContainer />
         <Footer />
       </main>
     </>

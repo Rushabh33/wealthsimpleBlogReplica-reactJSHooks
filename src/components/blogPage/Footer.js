@@ -3,17 +3,7 @@ import React from 'react'
 const Footer = () => {
   return (
     <div className='footer'>
-      <h1>helo</h1>
-      <h1>helo</h1>
-      <h1>helo</h1>
-      <h1>helo</h1>
-      <h1>helo</h1>
-      <h1>helo</h1>
-      <h1>helo</h1>
-      <h1>helo</h1>
-      <h1>helo</h1>
-      <h1>helo</h1>
-      <h1>helo</h1>
+      <div>By using this website, you accept our Terms of Use and Privacy Policy. Copyright 2019 Wealthsimple Technologies Inc.`</div>
     </div>
   )
 }
