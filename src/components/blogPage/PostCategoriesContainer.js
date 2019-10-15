@@ -7,8 +7,8 @@ const PostCategoriesContainer = () => {
   const [topArticleIDs, setTopArticleIDs] = useState([])
   const [listOfPosts, setListOfPosts] = useState([])
   const [lastDisplayedPostIndex, setLastDisplayedPostIndex] = useState(0)
-  const [postsPerPage, setPostsPerPage] = useState(30)
   const [featuredPostData, setFeaturedPostData] = useState({})
+  const postsPerPage = 30
 
   const getHackerNewsAPI = async (query, queryCategory = '') => {
     const url = `https://hacker-news.firebaseio.com/v0/${queryCategory + '/'}${query}.json`
@@ -34,7 +34,6 @@ const PostCategoriesContainer = () => {
       return getListofPosts().then(data => {
         setListOfPosts([...listOfPosts, ...data])
         setLastDisplayedPostIndex(lastDisplayedPostIndex + postsPerPage)
-        setLoading(false)
       })
     }
   }

@@ -1,9 +1,9 @@
-import React, { useState } from 'react'
+import React from 'react'
 import PostCategory from './PostCategory'
 
 const PostCategories = ({ listOfPosts, handleScrollLoading, postsPerPage }) => {
 
-  const [categoryAPosts, setCategoryAPosts] = useState(listOfPosts.slice(0, 4))
+  const categoryAPosts = listOfPosts.slice(0, 4)
 
   return (
     <div>

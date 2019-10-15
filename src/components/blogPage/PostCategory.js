@@ -3,10 +3,10 @@ import PostCard from './PostCard'
 
 const PostCategory = ({ postsToDisplay, handleScrollLoading, postsPerPage }) => {
   const isCategoryAPosts = postsToDisplay.length < postsPerPage
-  const [thumbnailPosts, setThumbnailPosts] = useState(postsToDisplay.slice(0, 4))
   const [displayThesePosts, setDisplayThesePosts] = useState(postsToDisplay)
   const [activateScrollLoading, setActivateScrollLoading] = useState(false)
   const [loadMore, setLoadMore] = useState(false)
+  const thumbnailPosts = postsToDisplay.slice(0, 4)
 
   const displayPosts = (data) => {
     return data.map(post => {
