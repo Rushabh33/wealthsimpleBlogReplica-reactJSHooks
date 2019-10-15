@@ -4,13 +4,14 @@ import PostMetaInfo from './PostMetaInfo'
 // right now doing the category with items to display
 const PostSubCategory = ({ postsToDisplay, handleScrollLoading, postsPerPage }) => {
   const isCategoryAPosts = postsToDisplay.length < postsPerPage
-  const [displayThesePosts, setDisplayThesePosts] = useState(postsToDisplay.slice(0, 4))
+  const [thumbnailPosts, setThumbnailPosts] = useState(postsToDisplay.slice(0, 4))
+  const [displayThesePosts, setDisplayThesePosts] = useState(postsToDisplay)
   const [activateScrollLoading, setActivateScrollLoading] = useState(false)
   const [loading, setLoading] = useState(false)
   const [loadMore, setLoadMore] = useState(false)
 
   const displayPosts = (data) => {
-
+    { console.log(data) }
     return data.map(post => {
       return (
         <li className='post'>
@@ -27,7 +28,7 @@ const PostSubCategory = ({ postsToDisplay, handleScrollLoading, postsPerPage }) 
 
   const handleClick = (e) => {
     e.preventDefault()
-    setDisplayThesePosts(postsToDisplay)
+    // setDisplayThesePosts(postsToDisplay)
     setActivateScrollLoading(true)
   }
 
@@ -39,42 +40,25 @@ const PostSubCategory = ({ postsToDisplay, handleScrollLoading, postsPerPage }) 
     }
   }, [activateScrollLoading]);
 
-  // handle scroll with a throttle
+
+  // handle scroll with a throttle 
   const handleScroll = () => {
-    setTimeout(async function () {
-      const readMoreContainer = document.getElementById('readMoreContainer')
-      if (window.innerHeight + window.scrollY >= readMoreContainer.clientHeight + readMoreContainer.offsetTop - 50) {
-        console.log(window.innerHeight + window.scrollY)
-        console.log(readMoreContainer.clientHeight + readMoreContainer.offsetTop)
-        // setLoadMore(true)
-        await handleScrollLoading()
-        console.log(displayThesePosts)
-      }
+    const readMoreContainer = document.getElementById('readMoreContainer')
+
+    // setTimeout to throttle the use of handleScrollLoading
+    if (window.innerHeight + window.scrollY >= readMoreContainer.clientHeight + readMoreContainer.offsetTop) {
+      handleScrollLoading()
     }
-      , 1000)
   }
 
-
-  // useEffect(() => {
-  //   if (loadMore) {
-
-  //     setLoadMore(false)
-  //   }
-  // }, [loadMore])
-
-  // const handleScroll = () => {
-  //   const readMoreContainer = document.getElementById('readMoreContainer')
-  //   if (window.innerHeight + window.scrollY <= readMoreContainer.clientHeight + readMoreContainer.offsetTop) {
-  //     console.log('hello')
-  //   }
-
-
-  // }
+  useEffect(() => {
+    setDisplayThesePosts(postsToDisplay)
+  }, [postsToDisplay])
 
   return (
     <div>
       <ul>
-        {displayPosts(displayThesePosts)}
+        {displayPosts(activateScrollLoading ? displayThesePosts : thumbnailPosts)}
       </ul>
       <div id='readMoreContainer'>
         <button

@@ -44,7 +44,7 @@ const BlogPostsContainer = () => {
 
 
   const handleScrollLoading = () => {
-    console.log('fetch')
+    // console.log('fetch')
     addToListOfPostsToDisplay()
   }
 

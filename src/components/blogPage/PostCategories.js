@@ -1,18 +1,18 @@
-import React from 'react'
+import React, { useState } from 'react'
 import FeaturedPost from './FeaturedPost'
 import PostSubCategory from './PostSubCategory'
 
 const PostCategories = ({ listOfPosts, handleScrollLoading, postsPerPage }) => {
   // 21239704 has image and description. Good for featured.
-  const featuredPost = listOfPosts[21239704]
-  const categoryAPosts = listOfPosts.slice(0, 4)
-  const categoryBPosts = listOfPosts
+  const [featuredPost, setFeaturedPost] = useState(21239704)
+  const [categoryAPosts, setCategoryAPosts] = useState(listOfPosts.slice(0, 4))
+  // const [categoryBPosts, setCategoryBPosts] = useState(listOfPosts)
 
   return (
     <div>
       <FeaturedPost postsToDisplay={featuredPost} />
       {/* <PostSubCategory postsToDisplay={categoryAPosts} /> */}
-      <PostSubCategory postsToDisplay={categoryBPosts} handleScrollLoading={handleScrollLoading} postsPerPage={postsPerPage} />
+      <PostSubCategory postsToDisplay={listOfPosts} handleScrollLoading={handleScrollLoading} postsPerPage={postsPerPage} />
     </div>
   )
 }
