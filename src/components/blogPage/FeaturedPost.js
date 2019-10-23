@@ -5,7 +5,7 @@ const FeaturedPost = ({ featuredPostData }) => {
 
   return (
     <section className='featuredPost'>
-      {featuredPostData ? <PostCard postInfo={featuredPostData} isFeaturedPost={true} /> : <div>loading</div>}
+      <PostCard postInfo={featuredPostData} isFeaturedPost={true} />
     </section>
   )
 }

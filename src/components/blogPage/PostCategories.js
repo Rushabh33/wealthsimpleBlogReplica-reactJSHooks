@@ -1,14 +1,11 @@
 import React from 'react'
 import PostCategory from './PostCategory'
 
-const PostCategories = ({ listOfPosts, handleScrollLoading, postsPerPage }) => {
-
-  const categoryAPosts = listOfPosts.slice(0, 4)
+const PostCategories = ({ listOfPosts, handleScrollLoading }) => {
 
   return (
     <div>
-      <PostCategory postsToDisplay={categoryAPosts} handleScrollLoading={handleScrollLoading} postsPerPage={postsPerPage} />
-      <PostCategory postsToDisplay={listOfPosts} handleScrollLoading={handleScrollLoading} postsPerPage={postsPerPage} />
+      <PostCategory postsToDisplay={listOfPosts} handleScrollLoading={handleScrollLoading} />
     </div>
   )
 }

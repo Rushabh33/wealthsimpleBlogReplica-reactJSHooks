@@ -1,0 +1,19 @@
+.footerContainer {
+  background-color: $backgroundInverseColor;
+  margin-top: 100px;
+}
+
+.footer { 
+  display: flex;
+  flex-wrap: wrap;
+  padding: 60px 0 30px;
+
+  li:first-child {
+    margin-bottom: 10px;
+  }
+}
+
+.footerCategory {
+  width: 25%;
+  padding-bottom: 40px;
+}

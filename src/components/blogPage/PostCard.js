@@ -33,14 +33,12 @@ const PostCard = ({ postInfo, isFeaturedPost = false }) => {
     e.target.src = PlaceHolderImage;
   }
 
-  const imgDivClass = isFeaturedPost ? 'featuredPostImageContainer' : 'postImageContainer'
-  const infoDivClass = isFeaturedPost ? 'featuredPostInfoContainer' : 'postInfoContainer'
   return (
     <a href={postInfo ? postInfo.url : null} target="_blank">
-      <div className={imgDivClass}>
+      <div className='postImageContainer'>
         <img src={postImage} onError={addDefaultSrc} alt={postInfo.title} />
       </div>
-      <div className={infoDivClass}>
+      <div className={isFeaturedPost ? 'featuredPostInfoContainer' : null}>
         <PostMetaInfo postInfo={postInfo} postDescription={postDescription} />
       </div>
     </a>

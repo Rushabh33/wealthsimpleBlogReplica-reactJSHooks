@@ -10,7 +10,7 @@ const Navbar = () => {
           <Logo />
           <ul>
             <li><a href="#nothing">Magazine</a></li>
-            <li className='callToAction'><a href="#nothing">Start Investing</a></li>
+            <li className='button'><a href="#nothing">Start Investing</a></li>
           </ul>
         </div>
       </div>
