@@ -1,0 +1,43 @@
+@media (max-width: 800px) {
+  
+  .featuredPost {
+    background: $backgroundBaseColor;
+  }
+  
+  .featuredPostInfoContainer {
+    position: static;
+    width: auto;
+  }
+
+  .postList {
+    column-count: 1;
+  }
+}
+
+@media (max-width: 500px) {
+  nav {
+    .navigation {
+      justify-content: center;
+    }
+  
+    .logo {
+      display: none;
+    }
+  } 
+  
+  .footerCategory {
+    width: 50%;
+  }
+
+  .blogHero {
+    text-align: center;
+
+    .logo {
+      width: 200px;
+    }
+
+    h1 {
+      font-size: 70px;
+    }
+  }
+}

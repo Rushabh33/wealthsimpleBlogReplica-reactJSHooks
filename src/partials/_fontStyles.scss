@@ -1,0 +1,95 @@
+span, 
+h3,
+p,
+h1,
+a,
+button {
+  font-family: 'Poppins', sans-serif;
+  color: $fontSecondaryColor;
+}
+
+a, button {
+  font-size: 16px;
+  text-decoration: none;
+}
+ 
+button {
+  color: $fontPrimaryColor;
+  font-weight: 400;
+}
+
+p {
+  font-size: 20px;  
+  font-weight: 300;
+}
+
+.blogHero {
+  h1 {
+    font-size: 76px;
+    letter-spacing: -4px;
+    font-weight: 600;
+    color: $fontH1Color;
+    line-height: 1.1;
+  }
+  h2 {
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    opacity: .4;
+    text-transform: uppercase;
+    line-height: 21px;
+    margin: 15px 0 0;
+  }
+}
+
+.postMetaInfoContainer {
+  span {
+    font-family: FuturaBT-Heavy,sans-serif;
+    font-size: 14px;
+    font-weight: 100;
+    letter-spacing: 2px;
+    opacity: .4;
+    text-transform: uppercase;
+  }
+
+  h3 {
+    font-weight: 600;
+    font-size: 24px;
+    letter-spacing: -.03em;
+    line-height: 32px;
+    text-transform: capitalize;
+  }
+
+  p {
+    font-size: 18px;
+  }
+}
+
+
+
+.footer {
+
+  li:first-child p{
+    font-size: 16px;
+    color: $fontPrimaryColor;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  a {
+    color: $fontPrimaryColor;
+    text-transform: capitalize;
+  }
+}
+
+.footerEnd {
+  text-align: center;
+
+  span {
+    color: $fontTertiaryColor;
+  }
+}
+
+.loadingDiv p {
+  text-transform: capitalize;
+}

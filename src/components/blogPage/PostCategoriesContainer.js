@@ -43,8 +43,6 @@ const PostCategoriesContainer = () => {
     return await Promise.all(listOfPostsToDisplay.map(id => getHackerNewsAPI(id, 'item')))
   }
 
-
-
   const handleScrollLoading = () => {
     addToListOfPostsToDisplay()
   }
@@ -54,9 +52,9 @@ const PostCategoriesContainer = () => {
       {listOfPosts.length
         ? <div className='wrapper'>
           <FeaturedPost featuredPostData={featuredPostData} />
-          <PostCategories listOfPosts={listOfPosts} handleScrollLoading={handleScrollLoading} postsPerPage={postsPerPage} featuredPostData={featuredPostData} />
+          <PostCategories listOfPosts={listOfPosts} handleScrollLoading={handleScrollLoading} featuredPostData={featuredPostData} />
         </div>
-        : <div>loading</div>}
+        : <div className='loadingDiv'><p>loading</p></div>}
     </div>
   )
 }

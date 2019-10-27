@@ -7,29 +7,38 @@ const PostCard = ({ postInfo, isFeaturedPost = false }) => {
   const [postDescription, setPostDescription] = useState('')
 
   useEffect(() => {
-    var ogs = require('open-graph-scraper');
+    const ogs = require('open-graph-scraper');
     const proxy = 'https://cors-anywhere.herokuapp.com/'
-    var options = { 'url': proxy + postInfo.url };
+    const options = { 'url': proxy + postInfo.url };
     ogs(options, function (error, results) {
-      if (error) {
-        setPostImage(PlaceHolderImage)
-        setPostDescription('Page Not Found')
-        return
-      }
-      setPostImage(results.data.ogImage.url)
-      setPostDescription(results.data.ogDescription)
+      !error && results.data ? handleDisplayedInfo(results.data) : handleDisplayedInfo(error)
     });
   }, [])
 
-  const imgDivClass = isFeaturedPost ? 'featuredPostImageContainer' : 'postImageContainer'
-  const infoDivClass = isFeaturedPost ? 'featuredPostInfoContainer' : 'postInfoContainer'
+  const handleDisplayedInfo = (data) => {
+    if (data) {
+      data.ogImage && data.ogImage.url ? setPostImage(data.ogImage.url)
+        : data.ogImage && data.ogImage.length ? setPostImage(data.ogImage[0].url)
+          : setPostImage(PlaceHolderImage)
+      data.ogDescription && data.ogDescription.length < 800 ? setPostDescription(data.ogDescription)
+        : data.ogDescription && data.ogDescription.length >= 800 ? setPostDescription(data.ogDescription.split('.').slice(0, 2).join('.') + '...')
+          : setPostDescription('Page Not Found')
+      return
+    }
+    setPostImage(PlaceHolderImage)
+    setPostDescription('Page Not Found')
+  }
+
+  const addDefaultSrc = (e) => {
+    e.target.src = PlaceHolderImage;
+  }
 
   return (
-    <a href={postInfo ? postInfo.url : null}>
-      <div className={imgDivClass}>
-        <img src={postImage} alt={postInfo.title} />
+    <a href={postInfo ? postInfo.url : null} target="_blank">
+      <div className='postImageContainer'>
+        <img src={postImage} onError={addDefaultSrc} alt={postInfo.title} />
       </div>
-      <div className={infoDivClass}>
+      <div className={isFeaturedPost ? 'featuredPostInfoContainer' : null}>
         <PostMetaInfo postInfo={postInfo} postDescription={postDescription} />
       </div>
     </a>

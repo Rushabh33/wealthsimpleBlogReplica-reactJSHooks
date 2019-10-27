@@ -8,19 +8,11 @@
 }
 
 .featuredPostInfoContainer {
-  background: hsla(0,0%,100%,.85);
+  background: $backgroundBaseFadedColor;
   bottom: 60px;
   margin: 0;
   position: absolute;
   right: 0;
   width: 580px;
 }
-
-
-.postCard {
-  width: calc(50% - 10px);
-  margin-bottom: 20px;
-  background: #f2efeb;
-}
-
 

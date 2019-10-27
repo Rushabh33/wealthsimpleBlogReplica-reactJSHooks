@@ -5,14 +5,14 @@ import Footer from './Footer'
 
 const BlogPage = () => {
   return (
-    <>
-      <main>
+    <main>
+      <div className='blogPageContainer'>
         <BlogHero />
         {/* filter component here */}
         <PostCategoriesContainer />
-        <Footer />
-      </main>
-    </>
+      </div>
+      <Footer />
+    </main>
   )
 }
 

@@ -1,19 +1,29 @@
 .postList {
   list-style-type: none;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
+  column-count: 2;
 }
 
+.readMoreContainer {
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: column;
+  align-items: center;
+  background: linear-gradient(hsla(0,0%,100%,0), $backgroundSecondayColor);
+  height: 350px;
+  margin-top: -338px;
+  position: relative;
+  text-align: center;
+  z-index: 1;
+}
 
 .loadingDiv {
-  height: 100vh;
-}
+  margin-top: 60px;
+  text-align: center;
+} 
 
-.hidden {
-  display: none;
-}
-
-.postCategory {
-  margin-bottom: 100px;
+.postCard {
+  display: inline-block;
+  width: 100%;
+  margin-bottom: 20px;
+  background: $backgroundBaseColor;
 }

@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import PostCard from './PostCard'
 
-const PostCategory = ({ postsToDisplay, handleScrollLoading, postsPerPage }) => {
-  const isCategoryAPosts = postsToDisplay.length < postsPerPage
+const PostCategory = ({ postsToDisplay, handleScrollLoading }) => {
   const [displayThesePosts, setDisplayThesePosts] = useState(postsToDisplay)
   const [activateScrollLoading, setActivateScrollLoading] = useState(false)
   const [loadMore, setLoadMore] = useState(false)
@@ -19,7 +18,7 @@ const PostCategory = ({ postsToDisplay, handleScrollLoading, postsPerPage }) => 
   }
 
   useEffect(() => {
-    if (activateScrollLoading && !isCategoryAPosts) {
+    if (activateScrollLoading) {
       window.addEventListener('scroll', handleScroll);
       return () => window.removeEventListener('scroll', handleScroll);
     }
@@ -35,14 +34,15 @@ const PostCategory = ({ postsToDisplay, handleScrollLoading, postsPerPage }) => 
     setLoadMore(false)
   }, [postsToDisplay])
 
+
   const handleClick = (e) => {
     e.preventDefault()
     setActivateScrollLoading(true)
   }
 
   const handleScroll = () => {
-    const categoryBContainer = document.getElementById('categoryBContainer')
-    if (window.innerHeight + window.scrollY >= categoryBContainer.clientHeight + categoryBContainer.offsetTop) {
+    const readMoreContainer = document.getElementsByClassName('readMoreContainer')[0]
+    if (window.innerHeight + window.scrollY >= readMoreContainer.clientHeight + readMoreContainer.offsetTop) {
       setLoadMore(true)
     }
   }
@@ -51,12 +51,11 @@ const PostCategory = ({ postsToDisplay, handleScrollLoading, postsPerPage }) => 
     <div className='postCategory'>
       <ul className='postList'>
         {displayPosts(activateScrollLoading ? displayThesePosts : thumbnailPosts)}
-        {loadMore ? <div className='loadingDiv'>loading</div> : null}
       </ul>
-      <div id={isCategoryAPosts ? null : 'categoryBContainer'} className='readMoreContainer'>
-        <button
-          className={isCategoryAPosts ? 'hidden' : null}
-          onClick={handleClick}>read more</button>
+      <div className='readMoreContainer'>
+        {!loadMore
+          ? <button onClick={handleClick}>Read more</button>
+          : <div className='loadingDiv'><p>loading</p></div>}
       </div>
     </div>
   )
